@@ -1,0 +1,2 @@
+# Only agent.py needs this; the skill's scripts use the standard library.
+claude-agent-sdk>=0.2.140
