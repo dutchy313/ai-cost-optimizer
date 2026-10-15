@@ -2,6 +2,13 @@
 
 A Claude agent that audits an LLM application or AI agent for token cost and rate-limit risk. It returns a prioritised savings plan and, when you allow it, applies the fixes.
 
+AI Cost Optimizer audits applications built on large language models for avoidable token spend and rate-limit failures. It reads your usage logs and source code, finds the places where calls waste money (missing prompt caching, no output limits, an oversized model for the task, unbatched offline work, naive retries), and returns a ranked savings plan with concrete code fixes.
+
+Every number comes from a script. Costs, cache-hit rates and savings estimates are calculated by bundled Python scripts that need only the standard library, never guessed by the model.
+The agent keeps its own costs down. A Sonnet agent decides what matters and hands narrow, read-only checks to a Haiku helper.
+Safe defaults. By default it only writes a report. It can edit files only when you pass --apply. Web access is off, and a hard budget cap stops the run.
+Use it however you like. Run it inside Claude Code, run it without the UI through the Claude Agent SDK, or use the scripts on their own.
+
 It is built on the `llm-cost-and-rate-limits` skill and follows that skill's own rules:
 
 - Python scripts do every count and every cost calculation.
